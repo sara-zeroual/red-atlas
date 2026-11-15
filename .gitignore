@@ -5,3 +5,5 @@ node_modules/
 
 .vercel
 VIDEO-SCRIPT.md
+video_build/
+*.mp4

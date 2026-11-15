@@ -3,6 +3,8 @@
 **NASA Space Apps Challenge 2026 — Casablanca**
 Challenge: *Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars*
 
+### 🚀 [Live demo — red-atlas-pi.vercel.app](https://red-atlas-pi.vercel.app/) · ✅ [Verify our numbers — VALIDATION.md](VALIDATION.md)
+
 > **We built a machine that searches for Mars on Earth — and the machine found Morocco.**
 > We didn't pick the sites. The data did.
 
