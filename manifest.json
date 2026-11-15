@@ -1,0 +1,17 @@
+{
+  "name": "RED ATLAS — Morocco, Earth's Training Ground for Mars",
+  "short_name": "RED ATLAS",
+  "description": "NASA open data proves Morocco rivals the world's planetary analog sites.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0b0d12",
+  "theme_color": "#e8492e",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Ccircle cx='256' cy='256' r='240' fill='%23e8492e'/%3E%3Ccircle cx='200' cy='200' r='50' fill='%23c23a24'/%3E%3Ccircle cx='320' cy='300' r='70' fill='%23c23a24'/%3E%3Ccircle cx='230' cy='340' r='30' fill='%23b03020'/%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

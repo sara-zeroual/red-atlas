@@ -1,0 +1,9 @@
+{
+  "name": "red-atlas",
+  "version": "1.0.0",
+  "description": "Morocco, Earth's training ground for Mars — NASA Space Apps 2026 (Casablanca)",
+  "scripts": {
+    "dev": "node server.js"
+  },
+  "license": "MIT"
+}

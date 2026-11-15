@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RED ATLAS — Morocco, Earth's Training Ground for Mars</title>
+<meta name="description" content="NASA open data proves Morocco rivals the world's recognized planetary analog sites. Interactive map, thermal stress index, and a proposal for the Atlas Analog Station." />
+<meta name="theme-color" content="#e8492e" />
+<link rel="manifest" href="manifest.json" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="nav-brand">🔴 RED&nbsp;ATLAS</div>
+  <div class="nav-links">
+    <a href="#map">Map</a>
+    <a href="#spaceview">Space view</a>
+    <a href="#science">Proof</a>
+    <a href="#station">Station</a>
+    <a href="#sources">Sources</a>
+    <button id="langToggle" class="lang-btn" aria-label="Switch language">FR</button>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <p class="hero-kicker" data-i18n="heroKicker"></p>
+  <h1 data-i18n="heroTitle"></h1>
+  <p class="hero-sub" data-i18n="heroSub"></p>
+  <div class="hero-cta">
+    <a href="#map" class="btn btn-primary" data-i18n="ctaMap"></a>
+    <a href="#science" class="btn btn-ghost" data-i18n="ctaScience"></a>
+  </div>
+  <div class="hero-stats">
+    <div class="stat"><span class="stat-num" id="statSwing">31.0</span><span class="stat-label" data-i18n="statSwing"></span></div>
+    <div class="stat"><span class="stat-num" id="statHeat">46.9</span><span class="stat-label" data-i18n="statHeat"></span></div>
+    <div class="stat"><span class="stat-num">84</span><span class="stat-label" data-i18n="statRain"></span></div>
+  </div>
+</header>
+
+<!-- ===== MAP ===== -->
+<section id="map" class="section">
+  <h2 data-i18n="mapTitle"></h2>
+  <p class="section-sub" data-i18n="mapSub"></p>
+  <div class="map-toolbar">
+    <button id="analyzeBtn" class="btn btn-primary" data-i18n="analyzeBtn"></button>
+    <button id="zoneBtn" class="btn btn-ghost" data-i18n="zoneBtn"></button>
+    <span class="map-hint" data-i18n="analyzeHint"></span>
+  </div>
+  <div class="map-wrap">
+    <div id="leafletMap"></div>
+    <aside id="siteCard" class="site-card">
+      <p class="site-card-hint">👆 Click a marker to open a site file</p>
+    </aside>
+  </div>
+  <div class="engine-box">
+    <h3 data-i18n="engineTitle"></h3>
+    <p data-i18n="engineP1"></p>
+    <p data-i18n="engineP2"></p>
+    <p class="engine-formula"><code>MLI = mean( min(swing/60,1), max(1−rain/2,0), min(wind/6,1), min(solar/22,1) ) × 100</code> <span data-i18n="engineP3"></span></p>
+  </div>
+</section>
+
+<!-- ===== SPACE VIEW (NASA Worldview imagery) ===== -->
+<section id="spaceview" class="section section-alt">
+  <h2 data-i18n="spaceTitle"></h2>
+  <p class="section-sub" data-i18n="spaceSub"></p>
+  <div id="spaceGallery" class="space-gallery"></div>
+  <p class="space-credit">True-color imagery: NASA Worldview (MODIS Terra), July 15, 2025 · ~50 km wide frames · <a href="https://worldview.earthdata.nasa.gov" target="_blank" rel="noopener">worldview.earthdata.nasa.gov</a></p>
+</section>
+
+<!-- ===== SCIENCE / PROOF ===== -->
+<section id="science" class="section section-alt">
+  <h2 data-i18n="scienceTitle"></h2>
+  <p class="section-sub" data-i18n="scienceSub"></p>
+  <div class="brief-box">
+    <strong data-i18n="briefTitle"></strong>
+    <span data-i18n="briefText"></span>
+  </div>
+  <div class="charts-grid">
+    <div class="chart-box chart-wide">
+      <h3 data-i18n="swingTitle"></h3>
+      <p class="chart-note" data-i18n="swingNote"></p>
+      <canvas id="swingChart"></canvas>
+      <p class="chart-note" style="margin-top:.8rem" data-i18n="swingWhy"></p>
+    </div>
+    <div class="chart-box">
+      <h3 data-i18n="tsiTitle"></h3>
+      <p class="chart-note" data-i18n="tsiNote"></p>
+      <canvas id="tsiChart"></canvas>
+    </div>
+    <div class="chart-box">
+      <h3 data-i18n="tempTitle"></h3>
+      <p class="chart-note" data-i18n="tempNote"></p>
+      <canvas id="tempChart"></canvas>
+      <div id="tempChartBtns" class="chart-btns"></div>
+    </div>
+    <div class="chart-box">
+      <h3 data-i18n="radarTitle"></h3>
+      <p class="chart-note" data-i18n="radarNote"></p>
+      <canvas id="radarChart"></canvas>
+    </div>
+  </div>
+  <div class="method-box">
+    <h3 data-i18n="methodTitle"></h3>
+    <ol>
+      <li data-i18n="method1"></li>
+      <li data-i18n="method2"></li>
+      <li data-i18n="method3"></li>
+      <li data-i18n="method4"></li>
+      <li data-i18n="method5"></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===== LIMITS ===== -->
+<section id="limits" class="section">
+  <h2 data-i18n="limitsTitle"></h2>
+  <div class="limits-grid">
+    <div class="limit-card"><strong data-i18n="limitGravityT"></strong><span data-i18n="limitGravity"></span></div>
+    <div class="limit-card"><strong data-i18n="limitAtmT"></strong><span data-i18n="limitAtm"></span></div>
+    <div class="limit-card"><strong data-i18n="limitRadT"></strong><span data-i18n="limitRad"></span></div>
+    <div class="limit-card"><strong data-i18n="limitColdT"></strong><span data-i18n="limitCold"></span></div>
+  </div>
+  <p class="limits-note" data-i18n="limitsNote"></p>
+</section>
+
+<!-- ===== STATION ===== -->
+<section id="station" class="section section-alt">
+  <h2 data-i18n="stationTitle"></h2>
+  <div class="station-grid">
+    <div>
+      <p data-i18n="stationP1"></p>
+      <p data-i18n="stationP2"></p>
+    </div>
+    <div class="station-facts">
+      <div class="fact">🛰️ <strong>ExoMars DREAMS</strong> tested 3 years in Morocco</div>
+      <div class="fact">🧑‍🚀 <strong>MARS2013</strong>: 28-day simulation, 20 nations</div>
+      <div class="fact">☀️ <strong>~6 kWh/m²/day</strong> of solar power for a base</div>
+      <div class="fact">📉 <strong>0.23 mm/day</strong> of rain — near-Martian aridity</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCAL IMPACT ===== -->
+<section id="impact" class="section">
+  <h2 data-i18n="impactTitle"></h2>
+  <p class="section-sub" data-i18n="impactSub"></p>
+  <div class="limits-grid">
+    <div class="limit-card"><strong data-i18n="impactChainT"></strong><span data-i18n="impactChain"></span></div>
+    <div class="limit-card"><strong data-i18n="impactWhoT"></strong><span data-i18n="impactWho"></span></div>
+    <div class="limit-card"><strong data-i18n="impactPhaseT"></strong><span data-i18n="impactPhase"></span></div>
+    <div class="limit-card"><strong data-i18n="impactDualT"></strong><span data-i18n="impactDual"></span></div>
+  </div>
+  <p class="limits-note" data-i18n="impactNote"></p>
+</section>
+
+<!-- ===== SOURCES ===== -->
+<section id="sources" class="section">
+  <h2 data-i18n="sourcesTitle"></h2>
+  <ul class="sources-list">
+    <li><strong>NASA POWER API</strong> — climatology (T2M, T2M_MAX, T2M_MIN, PRECTOTCORR, WS10M, ALLSKY_SFC_SW_DWN), power.larc.nasa.gov</li>
+    <li><strong>NASA MSL / REMS</strong> — Gale Crater temperature ranges (Curiosity rover)</li>
+    <li><strong>NASA LRO Diviner</strong> — lunar surface temperature ranges</li>
+    <li><strong>NASA Worldview</strong> — satellite imagery of the five sites</li>
+    <li><strong>NASA Mars Trek &amp; Moon Trek</strong> — planetary surface context</li>
+    <li><strong>NASA SRTM</strong> — elevation data (approximate site altitudes)</li>
+    <li><strong>NASA Earthdata Search</strong> — dataset discovery portal</li>
+    <li><strong>NASA Planetary Data System (PDS)</strong> — planetary mission archive (lunar &amp; Martian observations)</li>
+    <li>Partner agency portals explored for follow-up layers: <strong>ESA Copernicus Data Space</strong> (Sentinel), <strong>CSA RADARSAT</strong> open data (SAR), <strong>JAXA G-Portal</strong></li>
+    <li><strong>Esri World Imagery</strong> — basemap tiles (via Leaflet)</li>
+    <li>Background facts: Austrian Space Forum (MARS2013), Ibn Battuta Centre, NASA SSERVI Annual Report 2018, Exploration Museum (Apollo–Iceland), Tissint meteorite records</li>
+  </ul>
+  <div class="ai-disclosure">
+    <h3>AI / SI use disclosure</h3>
+    <p>Super Intelligence tools were used to accelerate development (code drafting assistance, content structuring, data-pipeline scripting) under full human direction and verification. All data values come from the cited NASA APIs; all historical claims are sourced. The embedded “Analog Guide” chatbot answers only from this page's curated data, with pre-written fallbacks.</p>
+  </div>
+</section>
+
+<!-- ===== ZONE ANALYSIS MODAL ===== -->
+<div id="zoneModal" class="zone-modal" hidden>
+  <div class="zone-panel">
+    <div class="zone-head">
+      <h3 data-i18n="zoneTitle"></h3>
+      <button id="zoneClose" aria-label="Close">✕</button>
+    </div>
+    <div id="zoneBody" class="zone-body"></div>
+  </div>
+</div>
+
+<!-- ===== CHAT ===== -->
+<button id="chatFab" class="chat-fab" aria-label="Open the Analog Guide">💬</button>
+<div id="chatPanel" class="chat-panel" hidden>
+  <div class="chat-head"><span data-i18n="chatTitle"></span><button id="chatClose">✕</button></div>
+  <div id="chatLog" class="chat-log"></div>
+  <form id="chatForm" class="chat-form">
+    <input id="chatInput" type="text" data-i18n-ph="chatPlaceholder" autocomplete="off" />
+    <button type="submit">➤</button>
+  </form>
+</div>
+
+<footer class="footer" data-i18n="footer"></footer>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js").catch(() => {});
+}
+</script>
+</body>
+</html>
