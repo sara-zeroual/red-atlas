@@ -49,7 +49,7 @@ Equal weights, no tuning. Every figure regenerates from public API calls.
 
 ## Tech stack
 
-Vanilla JS + Leaflet + Chart.js · Vercel serverless functions (`/api/chat`, `/api/analyze`) proxying **Groq** (llama-3.1-8b-instant) so the API key stays server-side · Python engine (`engine/scan.py`, stdlib + numpy) · PWA (offline-capable, installable) · Bilingual EN/FR (auto-detect)
+Vanilla JS + Leaflet + Chart.js · Vercel serverless functions (`/api/chat`, `/api/analyze`) proxying **Groq** (gpt-oss-120b) so the API key stays server-side · Python engine (`engine/scan.py`, stdlib + numpy) · PWA (offline-capable, installable) · Bilingual EN/FR (auto-detect)
 
 ## Run locally
 

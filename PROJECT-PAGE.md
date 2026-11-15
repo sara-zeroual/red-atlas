@@ -10,7 +10,7 @@ Our answer: **nobody had systematically scanned Morocco with NASA's own data.** 
 
 ## 2. Your Solution & Prototype/Demo
 
-**RED ATLAS — we built a machine that searches for Mars on Earth, and the machine found Morocco.** Live demo: [URL VERCEL]
+**RED ATLAS — we built a machine that searches for Mars on Earth, and the machine found Morocco.** Live demo: https://red-atlas-pi.vercel.app/
 
 Four working components:
 
@@ -30,7 +30,7 @@ Four working components:
 - **NASA SRTM**: site elevations · **NASA Earthdata & PDS**: dataset discovery
 - Partner resources: **ESA Copernicus Browser** (Sentinel-2 link per site), CSA RADARSAT and JAXA G-Portal explored for follow-up SAR/precipitation layers
 - Stack: Vanilla JS + Leaflet + Chart.js · Python engine (stdlib + numpy, `engine/scan.py` — rerun it yourself) · Vercel serverless functions proxying Groq (llama-3.1-8b-instant, key server-side) · PWA offline · bilingual EN/FR
-- Open source (MIT): [URL GITHUB]
+- Open source (MIT): https://github.com/sara-zeroual/red-atlas
 
 ## 4. Impact
 
