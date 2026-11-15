@@ -54,8 +54,8 @@ Vanilla JS + Leaflet + Chart.js · Vercel serverless functions (`/api/chat`, `/a
 ## Run locally
 
 ```bash
-node server.js            # → http://localhost:7100/
-GROQ_API_KEY=gsk_... node server.js   # enables the live AI agent
+node preview-server.js            # → http://localhost:7100/
+GROQ_API_KEY=gsk_... node preview-server.js   # enables the live AI agent
 ```
 
 ## Regenerate the engine data

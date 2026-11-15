@@ -40,9 +40,10 @@ Answer in ${lang === "fr" ? "French" : "English"}.`;
         "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
       },
       body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        max_tokens: 200,
+        model: "openai/gpt-oss-120b",
+        max_tokens: 900,
         temperature: 0.4,
+        reasoning_effort: "low",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: userMsg }

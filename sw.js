@@ -4,7 +4,7 @@
 // Images : cache d'abord (elles ne changent jamais).
 const CACHE = "red-atlas-v11";
 const ASSETS = [
-  "./", "./index.html", "./style.css", "./app.js", "./data.js", "./manifest.json",
+  "./", "./index.html", "./style.css", "./atlas.js", "./data.js", "./manifest.json",
   "./img/erg_chebbi.jpg", "./img/tafilalet.jpg", "./img/agoudal.jpg",
   "./img/anti_atlas.jpg", "./img/mhamid.jpg", "./engine/engine.json"
 ];

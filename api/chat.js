@@ -1,7 +1,7 @@
 // RED ATLAS — Vercel Serverless Function
 // Proxies the Analog Guide chatbot to Groq so the API key stays server-side.
 // Env var required in Vercel dashboard: GROQ_API_KEY
-// Model: llama-3.1-8b-instant (fast, free tier)
+// Model: openai/gpt-oss-120b (fast, free tier)
 
 const SYSTEM_PROMPT = `You are the "Analog Guide" for RED ATLAS, a NASA Space Apps 2026 project.
 You answer ONLY from the verified project data below. If a question is outside it, say so briefly and suggest a related topic. Keep answers under 80 words, plain language, no jargon without a one-line explanation.
@@ -39,9 +39,10 @@ module.exports = async (req, res) => {
         "Authorization": `Bearer ${process.env.GROQ_API_KEY}`
       },
       body: JSON.stringify({
-        model: "llama-3.1-8b-instant",
-        max_tokens: 220,
+        model: "openai/gpt-oss-120b",
+        max_tokens: 900,
         temperature: 0.3,
+        reasoning_effort: "low",
         messages: [
           { role: "system", content: SYSTEM_PROMPT },
           { role: "user", content: question }
